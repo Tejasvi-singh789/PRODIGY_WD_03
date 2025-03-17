@@ -23,6 +23,18 @@ const winPatterns = [
   [6, 7, 8],
 ];
 
+
+function handleAIMove() {
+    const availableCells = gameState.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
+    const randomIndex = availableCells[Math.floor(Math.random() * availableCells.length)];
+
+    if (randomIndex !== undefined) {
+        gameState[randomIndex] = currentPlayer === 'X' ? 'O' : 'X';
+        cells[randomIndex].textContent = currentPlayer === 'X' ? 'O' : 'X';
+        checkResult();
+    }
+}
+
 const resetGame = () => {
   turnO = true;
   count = 0;
